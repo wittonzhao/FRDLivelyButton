@@ -23,11 +23,20 @@ typedef enum {
     kFRDLivelyButtonStyleArrowRight
 } kFRDLivelyButtonStyle;
 
+typedef enum {
+  kFRLivelyButtonAlignmentTop,
+  kFRLivelyButtonAlignmentRight,
+  kFRLivelyButtonAlignmentLeft,
+  kFRLivelyButtonAlignmentDown,
+  kFRLivelyButtonAlignmentCenter
+} kFRLivelyButtonAlignment;
+
 @interface FRDLivelyButton : UIButton
 
 -(kFRDLivelyButtonStyle) buttonStyle;
 
 -(void) setStyle:(kFRDLivelyButtonStyle)style animated:(BOOL)animated;
+-(void) setAlignment:(kFRLivelyButtonAlignment)alignment;
 
 @property (nonatomic, strong) NSDictionary *options;
 +(NSDictionary *) defaultOptions;

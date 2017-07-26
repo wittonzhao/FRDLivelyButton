@@ -22,6 +22,7 @@ NSString *const kFRDLivelyButtonStyleChangeAnimationDuration = @"kFRDLivelyButto
 
 @property (nonatomic) kFRDLivelyButtonStyle buttonStyle;
 @property (nonatomic) kFRLivelyButtonAlignment alignment;
+@property (nonatomic) kFRLivelyButtonNomalAlignment nomalAlignment;
 @property (nonatomic) CGFloat dimension;
 @property (nonatomic) CGPoint offset;
 @property (nonatomic) CGPoint centerPoint;
@@ -104,6 +105,7 @@ NSString *const kFRDLivelyButtonStyleChangeAnimationDuration = @"kFRDLivelyButto
 -(void) layoutSubviews {
     [super layoutSubviews];
     [self setAlignment: _alignment];
+    
     [self setStyle: [self buttonStyle] animated:false];
 }
 
@@ -118,16 +120,53 @@ NSString *const kFRDLivelyButtonStyleChangeAnimationDuration = @"kFRDLivelyButto
     }];
 }
 
--(void) setAlignment:(kFRLivelyButtonAlignment)alignment
+-(void) setAlignment:(kFRLivelyButtonAlignment)alignment WithCenterPoint:(CGFloat)centerPoint
 {
   _alignment = alignment;
   if (alignment == kFRLivelyButtonAlignmentRight) {
-    self.dimension = 16;
+    self.dimension = 12;
     self.offset = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension),
                               (CGRectGetHeight(self.bounds) - self.dimension) / 2.0f);
-    self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f), CGRectGetMidY(self.bounds));
+    self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f - centerPoint) , CGRectGetMidY(self.bounds));
   }
+    if (alignment == kFRLivelyButtonAlignmentEditAdressRight) {
+        self.dimension = 16;
+        self.offset = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension),
+                                  (CGRectGetHeight(self.bounds) - self.dimension) / 2.0f);
+        self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f) + 40 , CGRectGetMidY(self.bounds) + 25) ;
+
+    }
+    if (alignment == kFRLivelyButtonAlignmentgiftCardRight) {
+        self.dimension = 16;
+        self.offset = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension),
+                                  (CGRectGetHeight(self.bounds) - self.dimension) / 2.0f);
+        self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f) - 40 , CGRectGetMidY(self.bounds)) ;
+    }
+    if (alignment == kFRLivelyButtonAlignmentOrderRight) {
+        self.dimension = 16;
+        self.offset = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension),
+                                  (CGRectGetHeight(self.bounds) - self.dimension) / 2.0f);
+        self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f) , CGRectGetMidY(self.bounds)) ;
+    }
+  if (alignment == kFRLivelyButtonAlignmentCenter) {
+    self.dimension = 12;
+    self.offset = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension),
+                              (CGRectGetHeight(self.bounds) - self.dimension) / 2.0f);
+    self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f - centerPoint), CGRectGetMidY(self.bounds));
+  }
+
 }
+
+
+//-(void) setNomalAlignment:(kFRLivelyButtonNomalAlignment)nomalAlignment{
+//    _nomalAlignment = nomalAlignment;
+//    if (nomalAlignment = kFRLivelyButtonNomalAlignmentRight) {
+//        self.dimension = 16;
+//        self.offset = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension),
+//                                  (CGRectGetHeight(self.bounds) - self.dimension) / 2.0f);
+//        self.centerPoint = CGPointMake((CGRectGetWidth(self.bounds) - self.dimension / 2.0f), CGRectGetMidY(self.bounds));
+//    }
+//}
 
 -(id) valueForOptionKey:(NSString *)key
 {
